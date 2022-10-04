@@ -195,7 +195,15 @@ SELECT `school_db_instructor`.`id`,
 
 # Get the count of students, courses, and instructors and print them in the terminal
 def problem_four(request):
+    student_count = Student.objects.all().count()
+    print('Students Count:', student_count)
 
+    course_count = Course.objects.all().count()
+    print('Courses Count:', course_count)
+
+    instructor_count = Instructor.objects.all().count()
+    print('Instructors Count:', instructor_count)
+    
     return complete(request)
 
 
