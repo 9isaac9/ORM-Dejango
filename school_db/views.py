@@ -146,8 +146,10 @@ def problem_three(request):
     get_id = Instructor.objects.get(pk=2)
     print(f'Instructor Name: {get_id.first_name} {get_id.last_name}')
 
-    courses = Course.objects.get(pk=2).filter("name")
-    
+    courses = Course.objects.filter(instructor = get_id)
+    print("Courses:")
+    for classes in courses:
+      print(f'- {classes.name}') 
     return complete(request)
 
 
