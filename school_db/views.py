@@ -283,11 +283,11 @@ VALUES ('Kyle', 'Harwood', 2022, 3.0)
 # Then query the studets table to get that student by their id
 # Print the new student's id, full name, and gpa to the terminal
 def problem_six(request):
+    student_id = 11
+    Student.objects.filter(pk=student_id).update(gpa=3.5)
+    update_student = Student.objects.get(pk=student_id)
     
-    Student.objects.filter(id=11).update(gpa=3.5)
-    update_student = Student.objects.get(id=11)
-    
-    print(f'Id: {update_student.id}')
+    print(f'Id: {update_student.pk}')
     print('Full Name: Kyle Hardwood')
     print(f'GPA:{update_student.gpa}')
 
@@ -338,16 +338,23 @@ LIMIT 21
 # Delete the student that you have created and updated
 # Check your MySQL Workbench to confirm the student is no longer in the table!
 def problem_seven(request):
+  student_id = 11
+  Student.objects.filter(pk=student_id).delete()
+
+  try:
+        student = Student.objects.get(pk=student_id)
+  except ObjectDoesNotExist:
+            print('Great! It failed and couldnt find the object because we deleted it!')
 
     # Make sure to set this equal to the primary key of the row you just created!
-    student_id = 11
+  student_id = 11
 
-    try:
+  try:
         student = Student.objects.get(pk=student_id)
-    except ObjectDoesNotExist:
+  except ObjectDoesNotExist:
         print('Great! It failed and couldnt find the object because we deleted it!')
 
-    return complete(request)
+  return complete(request)
 
 
 # Supporting Query Method Documentation:
